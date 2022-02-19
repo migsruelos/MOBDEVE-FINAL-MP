@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(applicationContext, HomePage::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@LoginActivity, "Invalid Credentials", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@LoginActivity, "Invalid Input", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
