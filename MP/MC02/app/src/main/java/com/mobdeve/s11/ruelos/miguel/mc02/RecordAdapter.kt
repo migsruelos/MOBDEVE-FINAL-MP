@@ -25,7 +25,7 @@ class RecordAdapter (private val context: Context,
         : RecyclerView.ViewHolder(recordBinding.root){
 
         fun bindRecordSave(userRecord: Record){
-            recordBinding.timer.text = "${userRecord.hr.toString()}:${userRecord.min.toString()}:${userRecord.sec.toString()}"
+            recordBinding.timer.text = "${userRecord.time}"
         }
     }
     override fun getItemCount() = recordList.size
