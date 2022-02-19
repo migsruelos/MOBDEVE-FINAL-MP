@@ -13,11 +13,19 @@ import com.mobdeve.s11.ruelos.miguel.mc02.databinding.ActivityRecordsBinding
 class RecordsActivity : AppCompatActivity(){
 
     lateinit var binding: ActivityRecordsBinding
+    lateinit var recordAdapter: RecordAdapter
+    var userRecordList = ArrayList<Record>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecordsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        recordAdapter = RecordAdapter(applicationContext, userRecordList)
+        binding.recordslist.layoutManager = LinearLayoutManager(applicationContext,
+            LinearLayoutManager.VERTICAL, false)
+
+        binding.recordslist.adapter = recordAdapter
     }
 
 }
