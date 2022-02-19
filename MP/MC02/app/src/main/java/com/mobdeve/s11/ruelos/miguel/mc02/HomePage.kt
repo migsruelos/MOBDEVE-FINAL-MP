@@ -19,16 +19,18 @@ import kotlin.math.roundToInt
 
 class HomePage : AppCompatActivity(){
 
-    private lateinit var binding : PageHomeBinding
+    private lateinit var binding : ActivityHomeBinding
     private var timerStarted = false
     private lateinit var serviceIntent: Intent
     private var time = 0.0
     private var userRecords = ArrayList<Record>()
+    lateinit var recordAdapter: RecordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var bundle = Bundle()
 
-        binding = PageHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnstart.setOnClickListener { startStopTimer() }
@@ -38,24 +40,25 @@ class HomePage : AppCompatActivity(){
         serviceIntent = Intent(applicationContext, TimerService::class.java)
         registerReceiver(updateTime, IntentFilter(TimerService.TIMER_UPDATED))
 
-        binding.btnrecordrun.setOnClickListener { recordRun() }
 
-        binding.btnrecords.setOnClickListener {
-            var gotoRecordsActivity = Intent(applicationContext, RecordsActivity::class.java)
 
-            startActivity(gotoRecordsActivity)
-            finish()
+        binding.btnrecordrun.setOnClickListener {
+
+            recordAdapter = RecordAdapter(applicationContext, userRecords)
+
+            userRecords.add(Record(recordRun()))
+            binding.recordslist.adapter = recordAdapter
         }
 
     }
 
-    public fun recordRun() {
+    private fun recordRun()  : String{
         val resultInt = time.roundToInt()
         val hours = resultInt % 86400 / 3600
         val minutes = resultInt % 86400 % 3600 / 60
         val seconds = resultInt % 86400 % 3600 % 60
 
-        userRecords.add(Record(hours, minutes, seconds))
+        return makeTimeString(hours, minutes, seconds)
 
     }
 
@@ -94,7 +97,6 @@ class HomePage : AppCompatActivity(){
         serviceIntent.putExtra(TimerService.TIMER_EXTRA, time)
         startService(serviceIntent)
         binding.btnstart.text = "Stop"
-        binding.btnstart.marginLeft
         timerStarted = true
     }
 
