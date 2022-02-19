@@ -46,13 +46,16 @@ class HomePage : AppCompatActivity(){
 
             recordAdapter = RecordAdapter(applicationContext, userRecords)
 
-            userRecords.add(Record(recordRun()))
+            binding.recordslist.layoutManager = LinearLayoutManager(applicationContext,
+                LinearLayoutManager.VERTICAL, false)
+
+            userRecords.add(Record(recordRun(time)))
             binding.recordslist.adapter = recordAdapter
         }
 
     }
 
-    private fun recordRun()  : String{
+    private fun recordRun(time: Double)  : String{
         val resultInt = time.roundToInt()
         val hours = resultInt % 86400 / 3600
         val minutes = resultInt % 86400 % 3600 / 60
