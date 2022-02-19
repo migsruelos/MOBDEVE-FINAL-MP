@@ -27,7 +27,7 @@ class RecordsActivity : AppCompatActivity(){
         binding.recordslist.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL, false)
 
-        recordRun()
+
         binding.recordslist.adapter = recordAdapter
     }
 
