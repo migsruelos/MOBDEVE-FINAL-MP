@@ -49,7 +49,7 @@ class HomePage : AppCompatActivity(){
 
     }
 
-    private fun recordRun() {
+    public fun recordRun() {
         val resultInt = time.roundToInt()
         val hours = resultInt % 86400 / 3600
         val minutes = resultInt % 86400 % 3600 / 60
@@ -94,6 +94,7 @@ class HomePage : AppCompatActivity(){
         serviceIntent.putExtra(TimerService.TIMER_EXTRA, time)
         startService(serviceIntent)
         binding.btnstart.text = "Stop"
+        binding.btnstart.marginLeft
         timerStarted = true
     }
 

@@ -12,7 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.mobdeve.s11.ruelos.miguel.mc02.databinding.RvRecordsBinding
 import com.mobdeve.s11.ruelos.miguel.mc02.Record
 
-class RecordAdapter (private val recordList: ArrayList<Record>)
+class RecordAdapter (private val context: Context,
+                     private val recordList: ArrayList<Record>)
     :RecyclerView.Adapter<RecordAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordAdapter.ViewHolder {

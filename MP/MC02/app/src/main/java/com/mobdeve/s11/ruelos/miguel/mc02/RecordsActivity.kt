@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.app.AppCompatActivity
 import com.mobdeve.s11.ruelos.miguel.mc02.databinding.ActivityRecordsBinding
+import com.mobdeve.s11.ruelos.miguel.mc02.HomePage
 
 class RecordsActivity : AppCompatActivity(){
 
@@ -22,9 +23,11 @@ class RecordsActivity : AppCompatActivity(){
         setContentView(binding.root)
 
         recordAdapter = RecordAdapter(applicationContext, userRecordList)
+
         binding.recordslist.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL, false)
 
+        recordRun()
         binding.recordslist.adapter = recordAdapter
     }
 
